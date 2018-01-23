@@ -22,20 +22,23 @@
 
 
 {% if user.is_authenticated %}
-<form method="post">
+<form method="post" enctype="multipart/form-data">
   {% csrf_token %}
   <div class="form-group">
     <label for="name">Name</label>
-    <input type="text" class="form-control" id="title" name="name" placeholder="Give a name to your group" required>
-    <div class="invalid-feedback"></div>
+    <input type="text" class="form-control" id="title" name="name" placeholder="Give a name to your group" required onblur="idd('title','1')" >
+    <div class="invalid-feedback"><span id="1"></span></div>
   </div>
   <div class="form-group">
     <label for="desc">Description</label>
-    <textarea  class="form-control" name="desc" rows="6"></textarea>
+    <textarea  class="form-control" name="desc" id="desc" rows="6"required onblur="iddd('desc','2')"></textarea>
     <input type = 'hidden' name = 'cid' value = {{community.pk}}>
     <input type="hidden" name="status" value={{status}}>
-    <small id="bodyhelp" class="form-text text-muted">Let people know what this group is about</small>
+      <small id="bodyhelp" class="form-text text-muted">Let people know what this group is about </small>
+       <div class="invalid-feedback"><span id="2"></span></div>
+
   </div>
+
   <div class="form-group">
   <label for="visibility">Visibility</label>
     <select name="visibility">
@@ -43,10 +46,18 @@
       <option value="0">Private</option>
     </select>
   </div>
+  <div class="form-group">
+    <label for="image">Group Image</label>
+
+      <input type="file" class="fa fa-link" id="img" name ="group_image" required>
+       <div class="invalid-feedback"><span id="3"></span></div>
+
+  </div>
+
   {% if status == 1 %}
-  <button type="submit" class="btn btn-primary">Create</button>
+  <button type="submit" class="btn btn-primary" value="Upload" onclick="Upload('3')">Create</button>
   {% endif %}
 </form>
-<br />
+<br/>
 {% endif %}
 {% endblock %}
