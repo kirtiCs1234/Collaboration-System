@@ -80,6 +80,83 @@ $(document).ready(function() {
 </script>-->
 
 </head>
+	<script>
+function idd(field_id,field1)
+{
+    var id1=document.getElementById(field_id).value;
+    var f1=document.getElementById(field1);
+    var s1=/^[A-Za-z]+$/;
+
+    id1=id1.trim();
+   if(id1.length<2)
+        {
+
+        f1.innerHTML="<font color=red>please Enter correct name more than 2 characeter</font> ";
+             document.getElementById(field_id).style.borderColor="red";
+        }
+    else if(isNaN(id1)==false)
+        {
+
+        f1.innerHTML="<font color=red>please Insert only  characeter</font> ";
+             document.getElementById(field_id).style.borderColor="red";
+        }
+    else if(!id1.match(s1)){
+            f1.innerHTML="<font color=red>please enter only alphabets</fond>";
+            document.getElementById(field_id).style.borderColor="red";
+}
+        else{
+
+        f1.innerHTML="";
+    }
+
+
+}
+        function iddd(field_id,field1)
+{
+    var id1=document.getElementById(field_id).value;
+    var f1=document.getElementById(field1);
+    var s1=/^[A-Za-z0-9]+$/;
+    
+    id1=id1.trim();
+   if(id1.length<2)
+        {
+
+        f1.innerHTML="<font color=red>please Enter  more than 2 characeter</font> ";
+             document.getElementById(field_id).style.borderColor="red";
+        }
+    else if(!id1.match(s1)){
+            f1.innerHTML="<font color=red>please enter only alphabets</fond>";
+            document.getElementById(field_id).style.borderColor="red";
+}
+        else{
+
+        f1.innerHTML="";
+    }
+}
+function Upload(f1) {
+    var f2=document.getElementById(f1);
+    var formData = new FormData();
+
+    var file = document.getElementById("img").files[0];
+
+    formData.append("Filedata", file);
+    var t = file.type.split('/').pop().toLowerCase();
+    if (t != "jpeg" && t != "jpg" && t != "png" && t != "bmp" && t != "gif") {
+        //alert('Please select a valid image file');
+        f2.innerHTML="<font color=red>Please select a valid extension image file</fond>";
+        document.getElementById("img").value = '';
+        return false;
+    }
+    if (file.size > 10) {
+        //alert('Please select a valid image file');
+        f2.innerHTML="<font color=red>please select valid size image</fond>";
+        document.getElementById("img").value = '';
+        return false;
+    }
+    return true;
+}
+</script>
+
 <body>
 
 
